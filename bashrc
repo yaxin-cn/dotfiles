@@ -26,6 +26,17 @@ export EDITOR
 # PATH
 PATH=$PATH
 
+# HISTORY
+HISTFILESIZE=400000000
+HISTSIZE=10000
+# PROMPT_COMMAND="history -a"
+PROMPT_COMMAND="${PROMPT_COMMAND:-:} ; history -a"
+export HISTSIZE PROMPT_COMMAND
+shopt -s histappend
+
 # complete
 complete -cf sudo
 complete -cf man
+
+# nodejs
+PATH=$PATH:/usr/local/node/bin

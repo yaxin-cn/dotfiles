@@ -1,9 +1,9 @@
 set nocompatible
 filetype off " required! For Vundle
-" ===============
+" ==================================
 " Vundle插件
 " install: git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-" ===============
+" ==================================
 if has('win32')
     set rtp+=D:/Protable/Editor/Vim/vimfiles/bundle/vundle
 else
