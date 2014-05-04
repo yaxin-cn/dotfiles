@@ -10,8 +10,7 @@ else
     set rtp+=~/.vim/bundle/vundle
 endif
 call vundle#rc()
-" let Vundle manage Vu ndle
-" required!
+" let Vundle manage Vundle, required
 Bundle 'gmarik/vundle'
 " 相较于Command-T等查找文件的插件，ctrlp.vim最大的好处在于没有依赖，干净利落
 Bundle 'ctrlp.vim'
