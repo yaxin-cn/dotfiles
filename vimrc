@@ -2,74 +2,65 @@ set nocompatible
 filetype off " required! For Vundle
 " ==================================
 " Vundle插件
-" install: git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+" Install: git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 " ==================================
 if has('win32')
-    set rtp+=D:/Protable/Editor/Vim/vimfiles/bundle/vundle
+    set rtp+=D:/Protable/Editor/Vim74/Vim/vimfiles/bundle/vundle
 else
     set rtp+=~/.vim/bundle/vundle
 endif
-call vundle#rc()
+call vundle#begin()
 " let Vundle manage Vundle, required
 Bundle 'gmarik/vundle'
-" 相较于Command-T等查找文件的插件，ctrlp.vim最大的好处在于没有依赖，干净利落
-Bundle 'ctrlp.vim'
-" 在输入()，""等需要配对的符号时，自动帮你补全剩余半个
-" Bundle 'AutoClose'
-" 神级插件，ZenCoding可以让你以一种神奇而无比爽快的感觉写HTML、CSS
-" Bundle 'ZenCoding.vim'
-Bundle 'mattn/emmet-vim'
-" 在()、""、甚至HTML标签之间快速跳转；
-Bundle 'matchit.zip'
+" start add bundle repo
 " 显示行末的空格；
 Bundle 'ShowTrailingWhitespace'
-" JS代码格式化插件；
-Bundle '_jsbeautify'
-" 用全新的方式在文档中高效的移动光标，革命性的突破
-Bundle 'EasyMotion'
 " 自动识别文件编码
 Bundle 'FencView.vim'
-" 必不可少，在VIM的编辑窗口树状显示文件目录
-Bundle 'The-NERD-tree'
-" NERD出品的快速给代码加注释插件，选中，`ctrl+h`即可注释多种语言代码；
-Bundle 'The-NERD-Commenter'
-" 解放生产力的神器，简单配置，就可以按照自己的风格快速输入大段代码。
-" Bundle 'UltiSnips'
-" 让代码更加易于纵向排版，以=或,符号对齐
-Bundle 'Tabular'
 " 自动补全
 Bundle 'neocomplcache'
-" 迄今位置最好的自动VIM自动补全插件了吧
-" Vundle的这个写法，是直接取该插件在Github上的repo
-" Bundle 'Valloric/YouCompleteMe'
-" vimwiki
-Bundle 'vimwiki'
-" markdown语法
-Bundle 'hallison/vim-markdown'
-" vim for wordpress
-Bundle 'pkufranky/VimRepress'
+" Bundle 'ervandew/supertab'
 
+" Python 插件
+Bundle 'Pydiction'
 Bundle 'fs111/pydoc.vim'
 Bundle 'nvie/vim-flake8'
 Bundle "msanders/snipmate.vim"
-" Bundle 'ervandew/supertab'
-Bundle 'sjl/gundo.vim'
-Bundle 'TaskList.vim'
-" powerline
-" Bundle 'Lokaltog/powerline'
+
 " 主题
 Bundle 'Color-Scheme-Explorer'
 Bundle 'Zenburn'
 Bundle 'void'
 Bundle 'yaxin-cn/colorscheme-yaxin'
-" 语法
-Bundle 'nginx.vim'
+Bundle 'tomasr/molokai'
+" end add Bundle repo
+call vundle#end()
+filetype plugin indent on
+
+" ==================================
+" 插件配置
+" ==================================
+" supertab
+let g:SuperTabDefaultCompletionType="context"
+set completeopt=menuone,longest,preview
+" neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_quick_match = 1
+" Pydiction
+let g:pydiction_location = '~/.vim/bundle/Pydiction/complete-dict'
+" vim-flake8
+let g:pyflakes_use_quickfix = 0
+let g:flake8_ignore="E501"
+
 set diffexpr=MyDiff()
 
-" =============
+" ==================================
 " 我的配置
-" =============
+" ==================================
 set nocompatible
+" 定义 <Leader> 为逗号
+let mapleader = ","
+let maplocalleader = ","
 " 保留的历史记录
 set history=500
 
@@ -98,26 +89,7 @@ set ch=1 "cmdheight
 set ls=2
 "命令行补全以增强模式运行
 set wildmenu
-if has('gui_running')
-    set statusline=
-    set statusline+=%1*
-    set statusline+=\ %t%m%r%h%y
-    set statusline+=\ %2*
-    set statusline+=\ %w[%<%.36(%{getcwd()}%)]
-    set statusline+=\ %3*
-    set statusline+=%=
-    set statusline+=%6*
-    set statusline+=\ [%{&fileformat},%{&fileencoding}]
-    set statusline+=\ %l/%L
-    set statusline+=\ %=\[%P]
-    set statusline+=\ " 添加一个空格
-else
-    set statusline=\ %t%m%r%h%y\ %w[%<%.36(%{getcwd()}%)]\ %=\ [%{&fileformat},%{&fileencoding}]\ %l/%L\ %=\[%P]\ " statusline
-endif
-
-" 定义 <Leader> 为逗号
-let mapleader = ","
-let maplocalleader = ","
+set statusline=\ %t%m%r%h%y\ %w[%<%.36(%{getcwd()}%)]\ %=\ [%{&fileformat},%{&fileencoding}]\ %l/%L\ %=\[%P]\ " statusline
 
 " Search Option
 set hlsearch  " Highlight search things
@@ -141,7 +113,7 @@ set autoindent
 set smartindent
 
 " 命令行粘贴
-set pastetoggle=<F11>
+" set pastetoggle=<F11>
 
 " 自动重新读入
 set autoread
@@ -168,9 +140,9 @@ set completeopt=longest,menu
 " 代码折叠
 set foldmethod=marker
 
-" ================
+" ==================================
 " AutoCmd
-" ================
+" ==================================
 if has("autocmd")
     " 将指定文件的换行符转换成 UNIX 格式
     " au FileType php,javascript,html,css,python,vim,vimwiki set ff=unix
@@ -201,11 +173,13 @@ if has("autocmd")
     endif
 endif
 
-" =============
+" ==================================
 " 颜色配置
-" =============
+" ==================================
 if has('syntax')
-    " colorscheme molokai-yaxin
+    if has('gui_running')
+        colorscheme molokai
+    endif
     " 默认编辑器配色
     " au BufNewFile,BufRead,BufEnter,WinEnter * colo void
     " 各不同类型的文件配色不同
@@ -214,9 +188,9 @@ if has('syntax')
     syntax on
 endif
 
-" ================
+" ==================================
 " 图形界面
-" ================
+" ==================================
 if has("gui_running")
     " 配置字体，使用前请先安装字体
     set guifont=Inconsolata:h16
@@ -259,12 +233,24 @@ if has("gui_running")
         \set guioptions+=T <Bar>
         \set guioptions+=m <Bar>
     \endif<CR>
+    " 图形界面的状态栏
+    set statusline=
+    set statusline+=%1*
+    set statusline+=\ %t%m%r%h%y
+    set statusline+=\ %2*
+    set statusline+=\ %w[%<%.36(%{getcwd()}%)]
+    set statusline+=\ %3*
+    set statusline+=%=
+    set statusline+=%6*
+    set statusline+=\ [%{&fileformat},%{&fileencoding}]
+    set statusline+=\ %l/%L
+    set statusline+=\ %=\[%P]
+    set statusline+=\ " 添加一个空格
 endif
 
-
-" =====================
+" ==================================
 " 编码设置，默认为utf-8
-" =====================
+" ==================================
 if has("multi_byte")
     " Vim内部使用的字符编码方式
 	set encoding=utf-8
@@ -283,9 +269,9 @@ if has("multi_byte")
     endif
 endif
 
-" =====================
+" ==================================
 " 按键绑定
-" =====================
+" ==================================
 " 保存
 map <leader>w :w<CR>
 " 退出
@@ -307,92 +293,9 @@ nmap <C-n>   :tabnext<cr>
 nmap <C-k>   :tabclose<cr>
 nmap <C-Tab> :tabnext<cr>
 
-" =====================
-" 插件配置 plugin setting
-" =====================
-" emmet
-" let g:user_emmet_expandabbr_key = 'jj'
-let g:user_emmet_settings = {
-\  'php' : {
-\    'extends' : 'html',
-\    'filters' : 'c',
-\  },
-\  'xml' : {
-\    'extends' : 'html',
-\  },
-\  'haml' : {
-\    'extends' : 'html',
-\  },
-\}
-" vimwiki
-let g:vimwiki_use_mouse=1
-if !exists("g:vimwiki_list")
-    let g:vimwiki_list = [
-                \{"path": "~/yaxin/wiki/",
-                \"syntax": "markdown",
-                \"path_html": "~/yaxin/wiki/html/",
-                \'template_path': '~/yaxin/wiki/template',
-                \'template_ext': '.html',
-                \"html_footer": "~/yaxin/wiki/template/footer.tpl",
-                \"html_header": "~/yaxin/wiki/template/header.tpl",
-                \'ext': '.wiki',
-                \'auto_export': 0},
-                \]
-    let g:vimwiki_auto_checkbox = 0
-    if has('win32')
-        " 注意！
-        " 1、如果在 Windows 下，盘符必须大写
-        " 2、路径末尾最好加上目录分隔符
-        let s:vimwiki_root = "F:/yaxin/wiki"
-        let g:vimwiki_list = [
-                    \{"path": s:vimwiki_root."/",
-                    \"syntax": "markdown",
-                    \"path_html": s:vimwiki_root."/html/",
-                    \"html_footer": s:vimwiki_root."/template/footer.tpl",
-                    \"html_header": s:vimwiki_root."/template/header.tpl",
-                    \"auto_export": 0},
-                    \]
-        " let g:vimwiki_w32_dir_enc = 'cp936'
-    endif
-
-    au FileType vimwiki set ff=unix fenc=utf8 noswapfile nobackup
-    "au FileType vimwiki imap <C-t> <c-r>=TriggerSnippet()<cr>
-
-    nmap <C-i><C-i> :VimwikiTabGoHome<cr>
-    nmap <Leader>ii :VimwikiTabGoHome<cr>
-endif
-let g:vimwiki_ext2syntax = {
-            \'.md': 'markdown',
-            \'.wiki': 'markdown'
-            \}
-
-" vimpress
-let VIMPRESS = [{'username': 'yaxin',
-                \'password': 'xinmu092921',
-                \'blog_url': 'http://xinmu.me/blog',
-                \},
-                \]
-
-" supertab
-au FileType python set omnifunc=pythoncomplete
-let g:SuperTabDefaultCompletionType="context"
-set completeopt=menuone,longest,preview
-" TaskList
-map <leader>td <Plug>TaskList
-" Gundo
-map <leader>g :GundoToggle<CR>
-" vim-flake8
-let g:pyflakes_use_quickfix = 0
-let g:flake8_ignore="E501"
-" neocomplcache
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_quick_match = 1
-" NERD Tree
-map <leader>n :NERDTreeToggle<CR>
-" nginx
-au BufRead,BufNewFile $HOME/nginx_conf/*.conf,/usr/local/nginx/conf/*.conf,/etc/nginx/conf/*.conf,*.com.conf,*.me.conf,*.io.conf  set ft=nginx
-
+" ==================================
 " 一些函数
+" ==================================
 function! MyDiff()
     let opt = '-a --binary '
     if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
@@ -434,8 +337,3 @@ hi User3 ctermfg=15 ctermbg=35 guifg=#ffffff guibg=#04b15e
 hi User4 ctermfg=15 ctermbg=70 guifg=#ffffff guibg=#83b901
 hi User5 ctermfg=15 ctermbg=214 guifg=#ffffff guibg=#fd8300
 hi User6 ctermfg=15 ctermbg=214 guifg=#ffffff guibg=#16528e
-
-" For Bundle
-filetype plugin indent on " required!
-
-let blog = "F:/yaxin/blog/"
