@@ -17,6 +17,10 @@ Bundle 'gmarik/vundle'
 Bundle 'ShowTrailingWhitespace'
 " 自动识别文件编码
 Bundle 'FencView.vim'
+" 类似sublime中的ctrl+p搜索功能
+Bundle 'kien/ctrlp.vim'
+" 类似sublime中Ctrl+D多选功能 docs:https://github.com/terryma/vim-multiple-cursors/blob/master/README.md
+Bundle 'terryma/vim-multiple-cursors'
 " 自动补全
 Bundle 'neocomplcache'
 " Bundle 'ervandew/supertab'
