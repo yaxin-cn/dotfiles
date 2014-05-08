@@ -33,6 +33,11 @@ Bundle 'Zenburn'
 Bundle 'void'
 Bundle 'yaxin-cn/colorscheme-yaxin'
 Bundle 'tomasr/molokai'
+Bundle 'chriskempson/vim-tomorrow-theme'
+
+" just for fun
+Bundle 'uguu-org/vim-matrix-screensaver'
+Bundle 'vim-scripts/TeTrIs.vim'
 " end add Bundle repo
 call vundle#end()
 filetype plugin indent on
