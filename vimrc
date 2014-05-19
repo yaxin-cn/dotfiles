@@ -13,6 +13,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Bundle 'gmarik/vundle'
 " start add bundle repo
+" markdown syntax
+Bundle 'plasticboy/vim-markdown'
 " 显示行末的空格；
 Bundle 'ShowTrailingWhitespace'
 " 自动识别文件编码
