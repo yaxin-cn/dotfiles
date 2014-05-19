@@ -51,6 +51,8 @@ filetype plugin indent on
 " ==================================
 " 插件配置
 " ==================================
+" markdown syntax
+let g:vim_markdown_folding_disabled=1
 " supertab
 let g:SuperTabDefaultCompletionType="context"
 set completeopt=menuone,longest,preview
