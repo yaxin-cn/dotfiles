@@ -142,6 +142,9 @@ if has('netbeans_intg')
     set autochdir
 endif
 
+" 记住退出位置
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+
 " 备份和缓存
 set nobackup
 set noswapfile
