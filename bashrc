@@ -18,6 +18,7 @@ alias vi='vim'
 alias ll='ls -al --color=auto'
 alias sudo='sudo env PATH=$PATH '
 alias py='python'
+alias npm='npm --registry=https://registry.npm.taobao.org'
 
 # Default Editor
 EDITOR=vim
@@ -40,3 +41,21 @@ complete -cf man
 
 # nodejs
 PATH=$PATH:/usr/local/node/bin
+
+# function
+set_proxy() {
+    if [ ! $1 ]; then
+        echo "No give proxy address"
+        exit 1
+    fi
+    export HTTP_PROXY=$1
+    export HTTPS_PROXY=$1
+    export http_proxy=$1
+    export https_proxy=$1
+}
+unset_proxy() {
+    unset HTTP_PROXY
+    unset HTTPS_PROXY
+    unset http_proxy
+    unset https_proxy
+}
