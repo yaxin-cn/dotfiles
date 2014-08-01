@@ -3,7 +3,7 @@
 current_dir=`pwd`
 home_dir=$HOME
 trash_dir=$home_dir"/.trash/"
-config_files="bashrc gitconfig vimrc"
+config_files="bashrc gitconfig vimrc npmrc"
 
 if [ ! -d $trash_dir ];then
     mkdir $trash_dir
