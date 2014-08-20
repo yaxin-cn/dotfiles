@@ -1,3 +1,4 @@
-registry = https://registry.npm.taobao.org
+#registry = https://registry.npm.taobao.org
+registry="http://registry.cnpmjs.org/"
 tmp = "~/.cache/npm/tmp"
 cache = "~/.cache/npm/.npm"
