@@ -18,6 +18,7 @@ alias vi='vim'
 alias ll='ls -al --color=auto'
 alias sudo='sudo env PATH=$PATH '
 alias py='python'
+alias clean='echo -ne "\\033c"'
 #alias npm='npm --registry=https://registry.npm.taobao.org'
 
 # Default Editor
