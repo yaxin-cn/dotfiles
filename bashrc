@@ -15,8 +15,6 @@ alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-ti
 alias sudo="sudo env PATH=$PATH"
 #alias yum='yum --disablerepo=\* --enablerepo=c6-media'
 alias vi='vim'
-alias ll='ls -al --color=auto'
-alias sudo='sudo env PATH=$PATH '
 alias py='python'
 alias clean='echo -ne "\\033c"'
 #alias npm='npm --registry=https://registry.npm.taobao.org'
@@ -26,25 +24,14 @@ EDITOR=vim
 export EDITOR
 
 # PATH
-PATH=$PATH
-
-# HISTORY
-HISTTIMEFORMAT="[%Y-%m-%d %H:%M:%S] "
-HISTFILESIZE=400000000
-HISTSIZE=10000
-# PROMPT_COMMAND="history -a"
-PROMPT_COMMAND="${PROMPT_COMMAND:-:} ; history -a"
-export HISTSIZE PROMPT_COMMAND HISTTIMEFORMAT
-shopt -s histappend
+PATH=$PATH:/usr/local/node/bin
+export PATH
 
 # complete
 complete -cf sudo
 complete -cf man
 
-# nodejs
-PATH=$PATH:/usr/local/node/bin
-
-# function
+# functions
 set_proxy() {
     if [ ! $1 ]; then
         echo "No give proxy address"
