@@ -36,6 +36,9 @@ export WORKON_HOME=$HOME/.virtualenvs
 if [ -f /usr/bin/virtualenvwrapper.sh ];then
     . /usr/bin/virtualenvwrapper.sh
 fi
+if [ -f /usr/local/bin/virtualenvwrapper.sh ];then
+    . /usr/local/bin/virtualenvwrapper.sh
+fi
 
 # functions
 set_proxy() {
