@@ -31,6 +31,12 @@ export PATH
 complete -cf sudo
 complete -cf man
 
+# virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+if [ -f /usr/bin/virtualenvwrapper.sh ];then
+    . /usr/bin/virtualenvwrapper.sh
+fi
+
 # functions
 set_proxy() {
     if [ ! $1 ]; then
