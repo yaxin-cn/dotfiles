@@ -25,8 +25,8 @@ export EDITOR
 
 # PATH
 PATH=$PATH:/usr/local/node/bin
-if [ -d ~/.local ];then
-    PATH=$PATH:~/.local
+if [ -d ~/.local/bin ];then
+    PATH=$PATH:~/.local/bin
 fi
 export PATH
 
