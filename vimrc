@@ -27,6 +27,10 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'neocomplcache'
 " Bundle 'ervandew/supertab'
 
+" syntax
+" nginx syntax
+Bundle 'nginx.vim'
+
 " Python 插件
 Bundle 'Pydiction'
 Bundle 'fs111/pydoc.vim'

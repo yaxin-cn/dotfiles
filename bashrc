@@ -60,3 +60,16 @@ unset_proxy() {
     unset http_proxy
     unset https_proxy
 }
+
+# tmux
+_tmux=`/usr/bin/which tmux 2> /dev/null`
+if [[ $? -eq 0 ]];then
+    _session_prefix='ssh-session'
+    _sessions=`$_tmux ls -F '#{session_name}:#{session_attached}' 2> /dev/null | grep "^${_session_prefix}" &> /dev/null`
+    #if [[ $? -eq  0 ]];then
+    #    $_tmux attach -t $_session_prefix
+    #else
+    #    $_tmux new -s $_session_prefix
+    #fi
+fi
+unset _tmux _session_prefix
