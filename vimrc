@@ -560,7 +560,7 @@ if has('gui_running')
     colorscheme molokai
 else
     set background=dark
-    colorscheme solarized
+    colorscheme molokai
 endif
 set t_Co=256
 
