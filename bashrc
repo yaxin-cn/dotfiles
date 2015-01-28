@@ -11,6 +11,7 @@ PS1='[\u@\h \W]\$'
 alias l.='ls -d .* --color=auto'
 alias ll='ls -al --color=auto'
 alias ls='ls --color=auto'
+alias grep='grep --colour=auto'
 alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'
 alias sudo="sudo env PATH=$PATH"
 #alias yum='yum --disablerepo=\* --enablerepo=c6-media'

@@ -57,12 +57,12 @@ set nobackup
 " 关闭交换文件
 set noswapfile
 "create undo file
-if has('persistent_undo')
-  set undolevels=1000         " How many undos
-  set undoreload=10000        " number of lines to save for undo
-  set undofile                " So is persistent undo ...
-  set undodir=/tmp/vimundo/
-endif
+" if has('persistent_undo')
+"   set undolevels=1000         " How many undos
+"   set undoreload=10000        " number of lines to save for undo
+"   set undofile                " So is persistent undo ...
+"   set undodir=/tmp/vimundo/
+" endif
 " 
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 
