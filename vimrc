@@ -24,8 +24,14 @@ let g:mapleader = ','
 " 开启语法高亮
 syntax on
 " install Vundle bundles
-if filereadable(expand("~/.vimrc.bundles"))
-    source ~/.vimrc.bundles
+if has('win32')
+    if filereadable($VIM . "/vimrc.bundles")
+        source $VIM/vimrc.bundles
+    endif
+elseif has('unix')
+    if filereadable(expand("~/.vimrc.bundles"))
+        source ~/.vimrc.bundles
+    endif
 endif
 " ensure ftdetect et al work by including this after the Vundle stuff
 filetype plugin indent on
@@ -371,8 +377,8 @@ noremap <silent><leader>/ :nohls<CR>
 " :b1 :b2   :bf :bl
 nnoremap [b :bprevious<cr>
 nnoremap ]b :bnext<cr>
-noremap <left> :bp<CR>
-noremap <right> :bn<CR>
+" noremap <left> :bp<CR>
+" noremap <right> :bn<CR>
 
 
 " tab 操作
@@ -513,7 +519,7 @@ nnoremap <buffer> <F10> :exec '!python' shellescape(@%, 1)<cr>
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-    set guifont=Inconsolata:h16
+    set guifont=Monaco:h10
     if has("gui_gtk2")   "GTK2
         set guifont=Monaco\ 12, Monospace\ 12
     endif
@@ -534,9 +540,9 @@ if has("gui_running")
     set noimd
     set t_Co=256
     " 启动窗口大小
-    set lines=36 columns=122
+    set lines=30 columns=132
     " 启动位置
-    winpos 140 0
+    winpos 40 0
     if has("unix")
         " 启动窗口大小
         set lines=30 columns=99
