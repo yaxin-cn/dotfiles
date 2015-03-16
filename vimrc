@@ -23,7 +23,7 @@ let mapleader = ','
 let g:mapleader = ','
 " 开启语法高亮
 syntax on
-" install Vundle bundles
+" 加载Vundle bundles
 if has('win32')
     if filereadable($VIM . "/vimrc.bundles")
         source $VIM/vimrc.bundles
@@ -33,7 +33,7 @@ elseif has('unix')
         source ~/.vimrc.bundles
     endif
 endif
-" ensure ftdetect et al work by including this after the Vundle stuff
+" 开启Vundle关闭的filtype检测
 filetype plugin indent on
 
 "==========================================
@@ -58,7 +58,7 @@ set shortmess=atI
 "set backup
 "set backupext=.bak
 "set backupdir=/tmp/vimbk/
-" 取消备份。 视情况自己改
+" 取消备份
 set nobackup
 " 关闭交换文件
 set noswapfile
@@ -81,9 +81,14 @@ set cursorline
 " set t_ti= t_te=
 
 "- 则点击光标不会换,用于复制
-set mouse-=a             " 鼠标暂不启用, 键盘党....
-" set mouse=a                 " Automatically enable mouse usage
-" set mousehide               " Hide the mouse cursor while typing
+" 图形界面下开启鼠标支持
+if has('gui_running')
+    set mouse=a
+else
+    set mouse-=a
+endif
+" 打字时隐藏鼠标指针
+set mousehide
 
 " 修复ctrl+m 多光标操作选择的bug，但是改变了ctrl+v进行字符选中时将包含光标下的字符
 "set selection=exclusive
@@ -563,10 +568,10 @@ endif
 
 " theme主题
 if has('gui_running')
-    colorscheme molokai
+    silent! colorscheme molokai
 else
     set background=dark
-    colorscheme molokai
+    silent! colorscheme molokai
 endif
 set t_Co=256
 
