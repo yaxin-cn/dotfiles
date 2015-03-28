@@ -511,6 +511,9 @@ Bundle 'Glench/Vim-Jinja2-Syntax'
 " 这个有坑, see issue https://github.com/wklken/k-vim/issues/49
 "Bundle 'gorodinskiy/vim-coloresque'
 
+" syntax for LESS
+Bundle 'groenewege/vim-less'
+
 "###### nginx #########
 Bundle 'evanmiller/nginx-vim-syntax'
 
