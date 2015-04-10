@@ -8,10 +8,10 @@ fi
 PS1='[\u@\h \W]\$'
 
 # Aliases
-if [ -f "${HOME}/.bash_aliases" ]; then
-    source "${HOME}/.bash_aliases"
-elif [ -f "${HOME}/.dotfiles/bash_aliases" ]; then
-    source "${HOME}/.dotfiles/bash_aliases"
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+elif [ -f ~/.dotfiles/configs/bash_aliases ]; then
+    . ~/.dotfiles/configs/bash_aliases
 fi
 
 # Default Editor
