@@ -32,7 +32,7 @@ def mklink(target=None, link_name=None):
     log(command)
     ret = os.system(command)
     if ret != 0:
-        log('Error %s' % command)
+        log('> Error %s' % command)
     return True
 
 

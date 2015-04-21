@@ -5,7 +5,7 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 # Prompt
-PS1='[\u@\h \W]\$'
+PS1='[\u@\h \[\e[33m\]\W\[\e[0m\]]\$'
 
 # Aliases
 if [ -f ~/.bash_aliases ]; then
