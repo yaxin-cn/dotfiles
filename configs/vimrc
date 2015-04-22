@@ -27,6 +27,8 @@ syntax on
 if has('win32')
     if filereadable($VIM . "/vimrc.bundles")
         source $VIM/vimrc.bundles
+    elseif filereadable($HOME . "/_vimrc.bundles")
+        source $HOME/_vimrc.bundles
     endif
 elseif has('unix')
     if filereadable(expand("~/.vimrc.bundles"))
@@ -545,7 +547,7 @@ if has("gui_running")
     set noimd
     set t_Co=256
     " 启动窗口大小
-    set lines=30 columns=132
+    set lines=41 columns=177
     " 启动位置
     winpos 40 0
     if has("unix")
