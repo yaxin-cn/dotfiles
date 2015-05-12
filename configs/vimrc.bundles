@@ -497,10 +497,12 @@ let g:html_indent_style1 = "inc"
 Bundle 'nono/jquery.vim'
 
 "###### emmet HTML complete #########
-"Bundle "mattn/emmet-vim"
+Bundle "mattn/emmet-vim"
+"let g:user_emmet_expandabbr_key='<Tab>'
+"imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 "###### vim.less : less 自动更新##########
-" Bundle 'groenewege/vim-less'
+Bundle 'groenewege/vim-less'
 " autocmd BufWritePost *.less :!lessc % > %:p:r.css
 
 "###### Jinja2 #########
@@ -512,9 +514,6 @@ Bundle 'Glench/Vim-Jinja2-Syntax'
 
 " 这个有坑, see issue https://github.com/wklken/k-vim/issues/49
 "Bundle 'gorodinskiy/vim-coloresque'
-
-" syntax for LESS
-Bundle 'groenewege/vim-less'
 
 "###### nginx #########
 Bundle 'evanmiller/nginx-vim-syntax'
