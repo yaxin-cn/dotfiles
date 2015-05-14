@@ -1,0 +1,13 @@
+# Interactive operation...
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Default to human readable figures
+alias df='df -h'
+alias du='du -h'
+
+# User specific aliases and functions
+alias vi='vim'
+alias py='python'
+alias clean='echo -ne "\\033c"'
