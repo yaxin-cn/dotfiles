@@ -1,3 +1,5 @@
+#
+alias ls='ls --color=tty -v'
 # Interactive operation...
 alias rm='rm -i'
 alias cp='cp -i'
