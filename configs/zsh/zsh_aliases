@@ -1,5 +1,9 @@
 #
+alias l='ls -lahv'
+alias la='ls -lAhv'
+alias ll='ls -lhv'
 alias ls='ls --color=tty -v'
+alias lsa='ls -lahv'
 # Interactive operation...
 alias rm='rm -i'
 alias cp='cp -i'

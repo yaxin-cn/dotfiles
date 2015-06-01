@@ -75,6 +75,6 @@ export LC_ALL=en_US.UTF-8
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # personal aliases
-if [ -f ~/.zsh_alias ]; then
-    source ~/.zsh_alias
+if [ -f ~/.zsh_aliases ]; then
+    source ~/.zsh_aliases
 fi

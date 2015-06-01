@@ -1,7 +1,8 @@
 #
 function _current_time() {
     local current_time=`date +%H:%M:%S`
-    echo "<%{$fg[cyan]%}★$current_time%{$reset_color%}>"
+    #echo "<%{$fg[cyan]%}★$current_time%{$reset_color%}>"
+    echo "<%{$fg[cyan]%}$current_time%{$reset_color%}>"
 }
 
 function _seprator() {
@@ -24,7 +25,7 @@ local ret_status="%(?:%{$fg[green]%}$(_seprator):%{$fg[red]%}$(_seprator))%{$res
 
 #PROMPT='[%{$fg_bold[white]%}%n%{$reset_color%}@%{$fg_bold[red]%}%m%{$reset_color%} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)%{$reset_color%}]$ '
 # full path
-PROMPT='[%{$fg_bold[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%~%{$reset_color%}$(git_prompt_info)%{$reset_color%}]${ret_status}'
+PROMPT='[%{$fg_bold[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m %~%{$reset_color%}$(git_prompt_info)%{$reset_color%}]${ret_status}'
 #PROMPT='[%{$fg_bold[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)%{$reset_color%}]$'
 #
 RPROMPT='$(_current_time)'
