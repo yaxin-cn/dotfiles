@@ -28,7 +28,7 @@ local ret_status="%(?:%{$fg[green]%}$(_seprator):%{$fg[red]%}$(_seprator))%{$res
 PROMPT='[%{$fg_bold[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%m %~%{$reset_color%}$(git_prompt_info)%{$reset_color%}]${ret_status}'
 #PROMPT='[%{$fg_bold[green]%}%n%{$reset_color%}@%{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)%{$reset_color%}]$'
 #
-RPROMPT='$(_current_time)'
+#RPROMPT='$(_current_time)'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="(%{$fg_bold[green]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX=")"

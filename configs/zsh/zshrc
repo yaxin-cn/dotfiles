@@ -80,3 +80,7 @@ if [ -f ~/.zsh_aliases ]; then
 fi
 # disable zsh auto correct
 unsetopt correct_all
+# disable mail check
+unset MAILCHECK
+# disable history share between sessions
+unsetopt share_history
