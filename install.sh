@@ -67,9 +67,13 @@ fi
 
 backup() {
     local config_file=$1
-    log INFO "Backuping config file $config_file"
     local filename=`basename $config_file`
-    mv -v $config_file "$BACKUP_PATH/$filename"
+    if [ -e $config_file ];then
+        log INFO "Backuping config file $config_file"
+        mv -v $config_file "$BACKUP_PATH/$filename"
+    else
+        log WARN "Config file $config_file do not exist, so backup abort"
+    fi
 }
 
 
@@ -84,15 +88,15 @@ backup() {
 #        echo "Dir"
 #    fi
 #done
-for item in npmrc profile tmux.conf bash/bashrc bash/bash_aliases zsh/zsh_aliases zsh/zshenv zsh/zshrc git/gitconfig vim/vimrc vim/vimrc.bundles pip;do
+for item in npmrc profile tmux.conf bash/bashrc bash/bash_aliases zsh/zsh_aliases zsh/zshenv zsh/zshrc git/gitconfig vim/vimrc vim/vimrc.plugins pip;do
     real_config_file="$SCRIPT_DIR/$item"
     _filename=`basename $real_config_file`
     if [ -f $real_config_file ];then
-        backup $real_config_file
+        backup "$HOME_DIR/.${_filename}"
         log info "Installing $_filename to system"
         ln -sv $real_config_file "$HOME_DIR/.${_filename}"
     elif  [ -d $real_config_file ];then
-        backup $real_config_file
+        backup "$HOME_DIR/.${_filename}"
         log info "Installing $_filename to system"
         ln -sv $real_config_file "$HOME_DIR/.${_filename}"
     fi
