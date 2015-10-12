@@ -29,3 +29,6 @@ alias l='ls -CF'                              #
 alias vi='vim'
 alias py='python'
 alias clean='echo -ne "\\033c"'
+
+# Local config
+[[ -f ~/.bash_aliases.local ]] && source ~/.bash_aliases.local

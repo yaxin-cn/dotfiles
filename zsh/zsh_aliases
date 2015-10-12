@@ -18,4 +18,7 @@ alias vi='vim'
 alias py='python'
 alias clean='echo -ne "\\033c"'
 alias sudo='sudo -H'
-alias pip='pip --trusted-host pypi.douban.com --trusted-host pypi.mirrors.opencas.cn --trusted-host mirrors.aliyun.com'
+alias pip='pip --trusted-host mirrors.aliyun.com'
+
+# Local config
+[[ -f ~/.zsh_aliases.local ]] && source ~/.zsh_aliases.local

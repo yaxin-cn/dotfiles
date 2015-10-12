@@ -1,4 +1,5 @@
 "==========================================
+
 " bundle 插件管理和配置项
 " 安装:
 " For Linux: git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
@@ -521,5 +522,4 @@ Bundle 'evanmiller/nginx-vim-syntax'
 " 待审查
 " Bundle "thinca/vim-quickrun"
 " nnoremap <F10> :QuickRun<cr>
-
 "------------------------------------------- end of configs --------------------------------------------

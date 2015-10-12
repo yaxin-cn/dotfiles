@@ -7,13 +7,6 @@ fi
 # Prompt
 PS1='[\u@\h \[\e[33m\]\W\[\e[0m\]]\$'
 
-# Aliases
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-elif [ -f ~/.dotfiles/configs/bash_aliases ]; then
-    . ~/.dotfiles/configs/bash_aliases
-fi
-
 # Default Editor
 EDITOR=vim
 export EDITOR
@@ -30,12 +23,12 @@ LS_COLORS='no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;
 #export LS_COLORS
 
 # locale
-LANG=en_US.UTF-8
-LANGUAGE=en_US:en
-LC_ALL=en_US.UTF-8
-export LANG
-export LANGUAGE
-export LC_ALL
+# LANG=en_US.UTF-8
+# LANGUAGE=en_US:en
+# LC_ALL=en_US.UTF-8
+# export LANG
+# export LANGUAGE
+# export LC_ALL
 
 # complete
 complete -cf sudo
@@ -80,3 +73,10 @@ if [[ $? -eq 0 ]];then
     #fi
 fi
 unset _tmux _session_prefix
+
+# additional rc file
+[[ -f ~/.bashrc.local ]] && source ~/.bashrc.local
+# personal aliases
+[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
+# environment setting
+[[ -f ~/.bashenv ]] && source ~/.bashenv
