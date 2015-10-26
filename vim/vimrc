@@ -11,11 +11,23 @@
 "
 "       -> 插件配置和具体设置在vimrc.plugins中
 "==========================================
+"
+"==========================================
+" 一些函数
+"==========================================
+function! OSX()
+    return has('macunix')
+endfunction
+function! LINUX()
+    return has('unix') && !has('macunix') && !has('win32unix')
+endfunction
+function! WINDOWS()
+    return  (has('win16') || has('win32') || has('win64'))
+endfunction
 
 "==========================================
 " Initial Plugin 加载插件
 "==========================================
-
 " 关闭兼容模式
 set nocompatible
 " 修改leader键
@@ -24,16 +36,36 @@ let g:mapleader = ','
 " 开启语法高亮
 syntax on
 " 加载Vundle bundles
-if has('win32')
-    if filereadable($VIM . "/vimrc.plugins")
-        source $VIM/vimrc.plugins
-    elseif filereadable($HOME . "/_vimrc.plugins")
-        source $HOME/_vimrc.plugins
+" required
+filetype off
+" set the runtime path to include Vundle and initialize
+if exists('g:vim_custom_path')
+    let vimfiles_path = g:vim_custom_path . '/vimfiles'
+else
+    if WINDOWS()
+        let vimfiles_path = expand('~/vimfiles')
+    else
+        let vimfiles_path = expand('~/.vim')
     endif
-elseif has('unix')
-    if filereadable(expand("~/.vimrc.plugins"))
-        source ~/.vimrc.plugins
-    endif
+endif
+
+let g:vim_tools_path = vimfiles_path . '/tools/'
+exec 'set rtp+=' . fnameescape(vimfiles_path . '/bundle/Vundle.vim/')
+call vundle#rc(fnameescape(vimfiles_path . '/bundle/'))
+
+" load .vimrc.pulgins and .vimrc.plugins.local if exists
+if exists('g:vim_custom_path')
+    let vimrc_plugins_path = g:vim_custom_path.'/.vimrc.plugins'
+    let vimrc_plugins_local_path = g:vim_custom_path.'/.vimrc.plugins.local'
+else
+    let vimrc_plugins_path = '~/.vimrc.plugins'
+    let vimrc_plugins_local_path = '~/.vimrc.plugins.local'
+endif
+if filereadable(expand(vimrc_plugins_path))
+    exec 'source ' . fnameescape(vimrc_plugins_path)
+endif
+if filereadable(expand(vimrc_plugins_local_path))
+    exec 'source ' . fnameescape(vimrc_plugins_local_path)
 endif
 " 开启Vundle关闭的filtype检测
 filetype plugin indent on
@@ -568,7 +600,7 @@ if has("gui_running")
     endif
 endif
 
-" theme主题
+" vim颜色主题
 if has('gui_running')
     silent! colorscheme molokai
 else
@@ -598,5 +630,4 @@ hi User3 ctermfg=15 ctermbg=35 guifg=#ffffff guibg=#04b15e
 hi User4 ctermfg=15 ctermbg=70 guifg=#ffffff guibg=#83b901
 hi User5 ctermfg=15 ctermbg=214 guifg=#ffffff guibg=#fd8300
 hi User6 ctermfg=15 ctermbg=214 guifg=#ffffff guibg=#16528e
-
 
