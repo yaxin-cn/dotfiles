@@ -2,7 +2,7 @@
 " bundle 插件管理和配置项
 " 安装:
 " For Linux: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-" For Windows: cd %USERPROFILE%; git clone https://github.com/VundleVim/Vundle.vim.git vimfiles/bundle/Vundle.vim
+" For Windows: git clone https://github.com/VundleVim/Vundle.vim.git %USERPROFILE%/vimfiles/bundle/Vundle.vim
 " =======================================================
 "################### 包依赖 #####################
 "package dependence:  ctags
@@ -87,7 +87,7 @@ Plugin 'tomasr/molokai'
 " 增强工具
 " =======================================================
 " ######## 快速去行尾空格 [, + <Space>] ########
-Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'ntpeters/vim-better-whitespace'
 autocmd BufWritePre * StripWhitespace
 
 " =======================================================
