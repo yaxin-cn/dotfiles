@@ -104,7 +104,7 @@ set noswapfile
 "   set undodir=/tmp/vimundo/
 " endif
 "
-set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
+set wildignore=*.swp,*.bak,*.pyc,*.class,.svn,.git
 
 " 突出显示当前行和列
 " set cursorcolumn
@@ -602,12 +602,13 @@ endif
 
 " vim颜色主题
 if has('gui_running')
-    silent! colorscheme molokai
+    silent! colorscheme monokai
 else
     set background=dark
-    silent! colorscheme molokai
+    " silent! colorscheme molokai
+    silent! colorscheme monokai
+    set t_Co=256
 endif
-set t_Co=256
 
 "设置标记一列的背景颜色和数字一行颜色一致
 hi! link SignColumn   LineNr

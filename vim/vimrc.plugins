@@ -82,6 +82,8 @@ let g:solarized_visibility="normal"
 " ######## 主题 molokai ########
 Plugin 'tomasr/molokai'
 "let g:molokai_original = 1
+" ######## 主题 molokai ########
+Plugin 'sickill/vim-monokai'
 
 " =======================================================
 " 增强工具
