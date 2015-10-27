@@ -1,5 +1,6 @@
-"==========================================
+" =======================================================
 " Sections:
+"       -> General functions 相关函数
 "       -> Initial Plugin 加载插件
 "       -> General Settings 基础设置
 "       -> Display Settings 展示/排版等界面格式设置
@@ -10,11 +11,11 @@
 "       -> Theme Settings  主题设置
 "
 "       -> 插件配置和具体设置在vimrc.plugins中
-"==========================================
-"
-"==========================================
-" 一些函数
-"==========================================
+" =======================================================
+
+" =======================================================
+" General functions 相关函数
+" =======================================================
 function! OSX()
     return has('macunix')
 endfunction
@@ -25,9 +26,9 @@ function! WINDOWS()
     return  (has('win16') || has('win32') || has('win64'))
 endfunction
 
-"==========================================
+" =======================================================
 " Initial Plugin 加载插件
-"==========================================
+" =======================================================
 " 关闭兼容模式
 set nocompatible
 " 修改leader键
@@ -70,9 +71,9 @@ endif
 " 开启Vundle关闭的filtype检测
 filetype plugin indent on
 
-"==========================================
+" =======================================================
 " General Settings 基础设置
-"==========================================
+" =======================================================
 
 " history存储容量
 set history=2000
@@ -146,9 +147,9 @@ set magic
 set backspace=eol,start,indent
 " set whichwrap+=<,>,h,l
 
-"==========================================
+" =======================================================
 " Display Settings 展示/排版等界面格式设置
-"==========================================
+" =======================================================
 
 " 显示当前的行号列号：
 set ruler
@@ -248,9 +249,9 @@ endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 
 
-"==========================================
+" =======================================================
 " FileEncode Settings 文件编码,格式
-"==========================================
+" =======================================================
 if has("multi_byte")
     " Vim内部使用的字符编码方式
     set encoding=utf-8
@@ -278,11 +279,15 @@ if has("multi_byte")
 endif
 
 
-"==========================================
+" =======================================================
 " others 其它设置
-"==========================================
-autocmd! bufwritepost _vimrc source % " vimrc文件修改之后自动加载。 windows。
-autocmd! bufwritepost .vimrc source % " vimrc文件修改之后自动加载。 linux。
+" =======================================================
+" vimrc文件修改之后自动加载
+if WINDOWS()
+    autocmd! bufwritepost _vimrc source %
+else
+    autocmd! bufwritepost .vimrc source %
+endif
 
 " 自动补全配置
 "让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
@@ -308,9 +313,9 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-"==========================================
+" =======================================================
 " HotKey Settings  自定义快捷键设置
-"==========================================
+" =======================================================
 " 主要按键重定义
 
 " 快速关闭当前窗口
@@ -346,14 +351,14 @@ noremap <F1> <Esc>"
 
 ""为方便复制，用<F2>开启/关闭行号显示:
 function! HideNumber()
-  if(&relativenumber == &number)
-    set relativenumber! number!
-  elseif(&number)
-    set number!
-  else
-    set relativenumber!
-  endif
-  set number?
+    if(&relativenumber == &number)
+        set relativenumber! number!
+    elseif(&number)
+        set number!
+    else
+        set relativenumber!
+    endif
+    set number?
 endfunc
 nnoremap <F2> :call HideNumber()<CR>
 nnoremap <F3> :set list! list?<CR>
@@ -513,22 +518,13 @@ nnoremap ` '
 nnoremap U <C-r>
 
 
-"==========================================
+" =======================================================
 " FileType Settings  文件类型设置
-"==========================================
+" =======================================================
 
 " Python 文件的一般设置，比如不要 tab 等
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
-
-" 保存python文件时删除多余空格
-fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
-autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 " 定义函数AutoSetFileHead，自动插入文件头
 autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
@@ -552,14 +548,14 @@ endfunc
 " F10 to run python script
 nnoremap <buffer> <F10> :exec '!python' shellescape(@%, 1)<cr>
 
-"==========================================
+" =======================================================
 " Theme Settings  主题设置
-"==========================================
+" =======================================================
 
 " Set extra options when running in GUI mode
 if has("gui_running")
     set guifont=Monaco:h10
-    if has("gui_gtk2")   "GTK2
+    if has("gui_gtk2")
         set guifont=Monaco\ 12, Monospace\ 12
     endif
     " 关闭菜单栏和工具栏
@@ -602,11 +598,11 @@ endif
 
 " vim颜色主题
 if has('gui_running')
-    silent! colorscheme monokai
+    silent! colorscheme molokai
 else
     set background=dark
     " silent! colorscheme molokai
-    silent! colorscheme monokai
+    silent! colorscheme molokai
     set t_Co=256
 endif
 
