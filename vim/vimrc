@@ -1,5 +1,5 @@
-" =======================================================
-" Sections:
+"+-------------------------------------------------------
+" 目录:
 "       -> General functions 相关函数
 "       -> Initial Plugin 加载插件
 "       -> General Settings 基础设置
@@ -11,7 +11,7 @@
 "       -> Theme Settings  主题设置
 "
 "       -> 插件配置和具体设置在vimrc.plugins中
-" =======================================================
+"+-------------------------------------------------------
 
 " =======================================================
 " General functions 相关函数
@@ -74,16 +74,15 @@ filetype plugin indent on
 " =======================================================
 " General Settings 基础设置
 " =======================================================
-
 " history存储容量
-set history=2000
-"检测文件类型
+set history=20000
+" 检测文件类型
 filetype on
-"针对不同的文件类型采用不同的缩进格式
+" 针对不同的文件类型采用不同的缩进格式
 filetype indent on
-"允许插件
+" 允许插件
 filetype plugin on
-"启动自动补全
+" 启动自动补全
 filetype plugin indent on
 " 文件修改之后自动载入。
 set autoread
@@ -97,25 +96,20 @@ set shortmess=atI
 set nobackup
 " 关闭交换文件
 set noswapfile
-"create undo file
-" if has('persistent_undo')
-"   set undolevels=1000         " How many undos
-"   set undoreload=10000        " number of lines to save for undo
-"   set undofile                " So is persistent undo ...
-"   set undodir=/tmp/vimundo/
-" endif
-"
+" create undo file
+"if has('persistent_undo')
+"  set undolevels=1000         " How many undos
+"  set undoreload=10000        " number of lines to save for undo
+"  set undofile                " So is persistent undo ...
+"  set undodir=/tmp/vimundo/
+"endif
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn,.git
-
 " 突出显示当前行和列
-" set cursorcolumn
+"set cursorcolumn
 set cursorline
-
-"设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制
-"好处：误删什么的，如果以前屏幕打开，可以找回
-" set t_ti= t_te=
-
-"- 则点击光标不会换,用于复制
+" 设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制
+" 好处：误删什么的，如果以前屏幕打开，可以找回
+"set t_ti= t_te=
 " 图形界面下开启鼠标支持
 if has('gui_running')
     set mouse=a
@@ -124,34 +118,29 @@ else
 endif
 " 打字时隐藏鼠标指针
 set mousehide
-
 " 修复ctrl+m 多光标操作选择的bug，但是改变了ctrl+v进行字符选中时将包含光标下的字符
 "set selection=exclusive
 set selection=inclusive
 set selectmode=mouse,key
-
-" No annoying sound on errors
 " 去掉输入错误的提示声音
 set title                " change the terminal's title
 set novisualbell         " don't beep
 set noerrorbells         " don't beep
 set t_vb=
 set tm=500
-
 " Remember info about open buffers on close"
 set viminfo^=%
 " For regular expressions turn magic on
 set magic
-
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
-" set whichwrap+=<,>,h,l
+"set whichwrap+=<,>,h,l
 
 " =======================================================
 " Display Settings 展示/排版等界面格式设置
 " =======================================================
-
-" 显示当前的行号列号：
+" 显示当前的行号列号
+set number
 set ruler
 set rulerformat=%-14.(%l,%c%V%)\ %P
 " 在状态栏显示正在输入的命令
@@ -160,10 +149,6 @@ set showcmd
 set showmode
 " 在上下移动光标时，光标的上方或下方至少会保留显示的行数
 set scrolloff=7
-
-" set winwidth=79
-
-" 命令行（在状态行下）的高度，默认为1，这里是2
 " 图形界面的状态栏
 set statusline=
 set statusline+=%1*
@@ -177,19 +162,15 @@ set statusline+=\ [%{&fileformat},%{&fileencoding}%{(exists(\"+bomb\")\ &&\ &bom
 set statusline+=\ %l/%L
 set statusline+=\ %=\[%P]
 set statusline+=\ " 添加一个空格
-"
-" Always show the status line - use 2 lines for the status bar
+" 命令行（在状态行下）的高度，默认为1，这里是2
 set laststatus=2
-"显示行号：
-set number
-" 取消换行。
-set nowrap
+" 取消换行
+"set nowrap
 " 括号配对情况,跳转并高亮一下匹配的括号
 set showmatch
 " How many tenths of a second to blink when matching brackets
 set matchtime=2
-
-"设置文内智能搜索提示
+" 设置文内智能搜索提示
 " 高亮search命中的文本。
 set hlsearch
 " 打开增量搜索模式,随着键入即时搜索
@@ -378,11 +359,7 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-" Go to home and end using capitalized directions
-noremap H ^
-noremap L $
-
-"Map ; to : and save a million keystrokes
+" Map ; to : and save a million keystrokes
 " ex mode commands made easy 用于快速进入命令行
 nnoremap ; :
 
