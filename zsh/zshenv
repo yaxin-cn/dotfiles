@@ -2,5 +2,10 @@
 export VISUAL=vim
 export EDITOR=$VISUAL
 
+# nvm mirror
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
+# ADD user PATH
+export PATH=$HOME/app/bin:$PATH
+
 # Local config
 [[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
