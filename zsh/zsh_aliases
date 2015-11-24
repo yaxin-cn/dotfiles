@@ -20,6 +20,7 @@ alias clean='echo -ne "\\033c"'
 alias sudo='sudo -H'
 alias pip='pip --trusted-host mirrors.aliyun.com'
 alias phpcli='psysh'
+alias php-cli='psysh'
 
 # Local config
 [[ -f ~/.zsh_aliases.local ]] && source ~/.zsh_aliases.local

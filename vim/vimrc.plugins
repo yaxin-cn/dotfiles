@@ -115,7 +115,7 @@ highlight SyntasticErrorSign guifg=white guibg=black
 " 代码自动补全
 "迄今为止用到的最好的自动VIM自动补全插件
 "重启 :YcmRestartServer
-if LINUX()
+if 0
     Plugin 'Valloric/YouCompleteMe'
     "youcompleteme  默认tab  s-tab 和自动补全冲突
     "let g:ycm_key_list_select_completion=['<c-n>']
