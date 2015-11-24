@@ -5,6 +5,7 @@ export EDITOR=$VISUAL
 # nvm mirror
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
 # ADD user PATH
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/X11:/usr/games
 export PATH=$HOME/app/bin:$PATH
 
 # Local config
