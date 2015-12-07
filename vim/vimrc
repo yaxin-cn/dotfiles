@@ -75,7 +75,7 @@ filetype plugin indent on
 " General Settings 基础设置
 " =======================================================
 " history存储容量
-set history=20000
+set history=9000
 " 检测文件类型
 filetype on
 " 针对不同的文件类型采用不同的缩进格式
