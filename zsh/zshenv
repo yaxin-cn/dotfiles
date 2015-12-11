@@ -10,6 +10,11 @@ PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/X11:/
 export PATH=$HOME/.composer/vendor/bin:$PATH
 # add custom bin path
 export PATH=$HOME/app/bin:$PATH
+# add nvm and local node path
+if which nvm &> /dev/null;then
+    installed_latest=`nvm_ls | tail -1`
+    export PATH=${NVM_DIR}/versions/node/${installed_latest}/bin:$PATH
+fi
 
 # Local config
 [[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
