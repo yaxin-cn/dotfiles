@@ -1,6 +1,6 @@
 [user]
-    email = yaxin.me@gmail.com
-    name = yaxin
+	email = yaxin.me@gmail.com
+	name = yaxin
 [alias]
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 [color]
@@ -13,3 +13,12 @@
     template = ~/.gitmessage
 #[http]
 #    proxy = x.co.com:1234
+[core]
+	excludesfile = /Users/yaxin/.gitignore_global
+[difftool "sourcetree"]
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path =
+[mergetool "sourcetree"]
+    cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
+

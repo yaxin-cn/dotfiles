@@ -531,10 +531,13 @@ nnoremap <buffer> <F10> :exec '!python' shellescape(@%, 1)<cr>
 
 " Set extra options when running in GUI mode
 if has("gui_running")
+    " font
     set guifont=Monaco:h10
     if has("gui_gtk2")
         set guifont=Monaco\ 12, Monospace\ 12
     endif
+    " colorscheme
+    silent! colorscheme molokai
     " 关闭菜单栏和工具栏
     " --set guioptions-=m 隐藏菜单栏
     " --set guioptions-=T 隐藏工具栏
@@ -550,12 +553,11 @@ if has("gui_running")
     set showtabline=1
     set linespace=2
     set noimd
-    set t_Co=256
     " 启动窗口大小
     set lines=41 columns=177
     " 启动位置
     winpos 40 0
-    if has("unix")
+    if LINUX()
         " 启动窗口大小
         set lines=30 columns=99
         " 启动位置
@@ -570,12 +572,13 @@ if has("gui_running")
         noremap <RightRelease> <RightMouse>
         noremap! <RightMouse> <Nop>
         noremap! <RightRelease> <RightMouse>
+    elseif OSX()
+        set guifont=Monaco:h12
     endif
 endif
 
 " vim颜色主题
 if has('gui_running')
-    silent! colorscheme molokai
 else
     set background=dark
     " silent! colorscheme molokai

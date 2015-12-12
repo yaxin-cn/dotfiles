@@ -53,16 +53,17 @@ log() {
 }
 
 HOME_DIR=$HOME
-if which readlink &> /dev/null;then
-    CURRENT_FILE=`readlink -f $0`
-else
-    CURRENT_FILE=$0
-fi
+# if which readlink &> /dev/null;then
+#     CURRENT_FILE=`readlink -f $0`
+# else
+#     CURRENT_FILE=$0
+# fi
+CURRENT_FILE=$0
 SCRIPT_DIR=`dirname $CURRENT_FILE`
 
 CURRENT_DATETIME=`date "+%Y-%m-%d %H:%M:%S"`
 BACKUP_TIMESTAMP=`date "+%Y-%m-%d_%H:%M:%S"`
-CURRENT_USER=`id -n --user`
+CURRENT_USER=$USERNAME
 LOG_FILE="/tmp/$CURRENT_USER-dotfiles-install.log"
 
 # init
