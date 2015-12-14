@@ -14,8 +14,12 @@ PATH=$HOME/app/bin:$PATH
 test -d /usr/local/node && PATH=/usr/local/node/bin:$PATH
 # add nvm and local node path
 if which nvm &> /dev/null;then
-    installed_latest=`nvm_ls | tail -1`
-    PATH=${NVM_DIR}/versions/node/${installed_latest}/bin:$PATH
+    node_version='system'
+    installed_latest=`nvm_ls | egrep -v "^system$" | tail -1`
+    if [ -n $installed_latest ];then
+        node_version=$installed_latest
+    fi
+    PATH=${NVM_DIR}/versions/node/${node_version}/bin:$PATH
 fi
 export PATH
 
