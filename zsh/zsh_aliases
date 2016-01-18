@@ -16,7 +16,13 @@ alias du='du -h'
 # User specific aliases and functions
 alias vi='vim'
 alias py='python'
-alias clean='echo -ne "\\033c"'
+system=`uname -s`
+if [ "$system"x = "Darwin"x ];then
+    # This is for OSX and the shortcuts for this is Cmd + K
+    alias clean='echo -ne "\e]50;ClearScrollback\a"'
+elif [ "$system"x = "Linux"x ];then
+    alias clean='echo -ne "\\033c"'
+fi
 alias sudo='sudo -H'
 alias pip='pip --trusted-host mirrors.aliyun.com'
 alias phpcli='psysh'
