@@ -1,23 +1,34 @@
+# define path
+SYS_NODE_PATH=/usr/local/node/bin
+USER_APP_PATH=$HOME/app/bin
+COMPOSER_PATH=$HOME/.composer/vendor/bin
+
 # Use vim as the visual editor
 export VISUAL=vim
 export EDITOR=$VISUAL
-
 # nvm mirror
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
 # reset PATH
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/X11:/usr/games
-# add composer path
-PATH=$HOME/.composer/vendor/bin:$PATH
-# add custom bin path
-PATH=$HOME/app/bin:$PATH
 # add global nodejs
-test -d /usr/local/node && PATH=/usr/local/node/bin:$PATH
+test -d $SYS_NODE_PATH && PATH=$SYS_NODE_PATH:$PATH
+# add composer path
+test -d $COMPOSER_PATH && PATH=$COMPOSER_PATH:$PATH
+# add custom bin path
+test -d $USER_APP_PATH && PATH=$USER_APP_PATH:$PATH
 # add nvm and local node path
 if which nvm &> /dev/null;then
-    installed_latest=`nvm_ls | tail -1`
-    PATH=${NVM_DIR}/versions/node/${installed_latest}/bin:$PATH
+    installed_latest=`nvm_ls | egrep -v "^system$" | tail -1`
+    if [ -n $installed_latest ];then
+        node_version=$installed_latest
+        PATH=${NVM_DIR}/versions/node/${node_version}/bin:$PATH
+    fi
 fi
 export PATH
 
+# make the fuck work
+if which thefuck &> /dev/null;then
+    eval "$(thefuck --alias)"
+fi
 # Local config
 [[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
