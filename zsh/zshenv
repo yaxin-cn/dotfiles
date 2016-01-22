@@ -24,6 +24,8 @@ if which nvm &> /dev/null;then
         PATH=${NVM_DIR}/versions/node/${node_version}/bin:$PATH
     fi
 fi
+# add jre path
+test -f /etc/jrerc && . /etc/jrerc
 export PATH
 
 # make the fuck work
