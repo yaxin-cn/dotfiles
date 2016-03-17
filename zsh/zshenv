@@ -8,6 +8,7 @@ export VISUAL=vim
 export EDITOR=$VISUAL
 # nvm mirror
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
+export NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
 # reset PATH
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/X11:/usr/games
 # add global nodejs
