@@ -18,9 +18,18 @@ test -d $COMPOSER_PATH && PATH=$COMPOSER_PATH:$PATH
 test -d $USER_APP_PATH && PATH=$USER_APP_PATH:$PATH
 # add nvm and local node path
 if which nvm &> /dev/null;then
-    installed_latest=`nvm_ls | egrep -v "^system$" | tail -1`
-    if [ -n $installed_latest ];then
-        node_version=$installed_latest
+    if [ -f $HOME/.node-version ];then
+        config_node_version=`cat $HOME/.node-version`
+        if [ -n $config_node_version ];then
+            node_version=$config_node_version
+        fi
+    else
+        installed_latest=`nvm_ls | egrep -v "^system$" | tail -1`
+        if [ -n $installed_latest ];then
+            node_version=$installed_latest
+        fi
+    fi
+    if [ -n $node_version ];then
         PATH=${NVM_DIR}/versions/node/${node_version}/bin:$PATH
     fi
 fi
