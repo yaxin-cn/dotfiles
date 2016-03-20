@@ -8,6 +8,7 @@ export VISUAL=vim
 export EDITOR=$VISUAL
 # nvm mirror
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
+export NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
 # reset PATH
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/X11:/usr/games
 # add global nodejs
@@ -18,17 +19,46 @@ test -d $COMPOSER_PATH && PATH=$COMPOSER_PATH:$PATH
 test -d $USER_APP_PATH && PATH=$USER_APP_PATH:$PATH
 # add nvm and local node path
 if which nvm &> /dev/null;then
-    installed_latest=`nvm_ls | egrep -v "^system$" | tail -1`
-    if [ -n $installed_latest ];then
-        node_version=$installed_latest
+    if [ -f $HOME/.node-version ];then
+        config_node_version=`cat $HOME/.node-version`
+        if [ -n $config_node_version ];then
+            node_version=$config_node_version
+        fi
+    else
+        installed_latest=`nvm_ls | egrep -v "^system$" | tail -1`
+        if [ -n $installed_latest ];then
+            node_version=$installed_latest
+        fi
+    fi
+    if [ -n $node_version ];then
         PATH=${NVM_DIR}/versions/node/${node_version}/bin:$PATH
     fi
 fi
+# add jre path
+test -f /etc/jrerc && . /etc/jrerc
 export PATH
 
 # make the fuck work
 if which thefuck &> /dev/null;then
     eval "$(thefuck --alias)"
 fi
+
+# fast set proxy
+# functions
+set_proxy() {
+    if [ ! $1 ]; then
+        echo "No give proxy address"
+        exit 1
+    fi
+    export HTTP_PROXY=$1
+    export http_proxy=$1
+}
+unset_proxy() {
+    unset HTTP_PROXY
+    unset HTTPS_PROXY
+    unset http_proxy
+    unset https_proxy
+}
+
 # Local config
 [[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
