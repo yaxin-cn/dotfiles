@@ -62,6 +62,8 @@ unsetopt correct_all
 unset MAILCHECK
 # disable history share between sessions
 unsetopt share_history
+# this is the reason: http://forum.ubuntu.org.cn/viewtopic.php?f=21&t=284253
+setopt nonomatch
 # additional rc file
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 # personal aliases
