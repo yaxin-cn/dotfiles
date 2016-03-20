@@ -14,7 +14,7 @@
 #[http]
 #    proxy = x.co.com:1234
 [core]
-	excludesfile = /Users/yaxin/.gitignore_global
+    excludesfile = /Users/yaxin/.gitignore_global
 [difftool "sourcetree"]
     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
     path =
