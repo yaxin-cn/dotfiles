@@ -24,7 +24,24 @@ if [ "$system"x = "Darwin"x ];then
 elif [ "$system"x = "Linux"x ];then
     alias clean='echo -ne "\\033c"'
 fi
-alias sudo='sudo env PATH=$PATH'
+# comment sudo alias, because this could make <tab> completion disabled.
+# so, how to make sudo PATH work fine:
+#     use `visudo` edit /etc/sudoers file add line
+#     Defaults    env_keep+="PATH"
+#     under **Defaults    env_reset** line
+#
+#     or
+#
+#     change **Defaults   secure_path=...** to
+#     **Defaults   !secure_path**
+#
+# PS:
+#     SETENV: can make -E option work
+#     `%sudo   ALL=(ALL:ALL) NOPASSWD: SETENV: ALL`
+#
+# reference:
+# http://stackoverflow.com/questions/257616/sudo-changes-path-why#answer-257644
+#alias sudo='sudo env PATH=$PATH'
 alias pip='pip --trusted-host mirrors.aliyun.com'
 alias phpcli='psysh'
 alias php-cli='psysh'
