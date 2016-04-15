@@ -36,6 +36,8 @@ if which nvm &> /dev/null;then
 fi
 # add jre path
 test -f /etc/jrerc && . /etc/jrerc
+# add composer local path
+test -d ~/.composer/vendor/bin && PATH=~/.composer/vendor/bin:$PATH
 export PATH
 
 # make the fuck work

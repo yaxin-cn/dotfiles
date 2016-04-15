@@ -161,6 +161,8 @@ let g:html_indent_style1 = "inc"
 Plugin 'nono/jquery.vim'
 " ######## emmet HTML complete ########
 Plugin 'mattn/emmet-vim'
+"let g:user_emmet_leader_key='<C-E>'
+let g:user_emmet_expandabbr_key='<C-E>'
 "let g:user_emmet_expandabbr_key='<Tab>'
 "imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 " ######## vim.less ########

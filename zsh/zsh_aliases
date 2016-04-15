@@ -42,7 +42,7 @@ fi
 # reference:
 # http://stackoverflow.com/questions/257616/sudo-changes-path-why#answer-257644
 #alias sudo='sudo env PATH=$PATH'
-alias pip='pip --trusted-host mirrors.aliyun.com'
+#alias pip='pip --trusted-host mirrors.aliyun.com'
 alias phpcli='psysh'
 alias php-cli='psysh'
 
