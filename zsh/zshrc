@@ -8,8 +8,10 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 ZSH_THEME="robbyrussell"
-if [[ -n $SSH_CONNECTION ]];then
+if [ -n "$SSH_CONNECTION" ];then
     ZSH_THEME="xinmu"
+elif [ `uname -o` = "Msys" ];then
+    ZSH_THEME="simple"
 fi
 
 # Uncomment the following line to use case-sensitive completion.
