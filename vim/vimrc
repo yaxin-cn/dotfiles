@@ -55,12 +55,20 @@ exec 'set rtp+=' . fnameescape(vimfiles_path . '/bundle/Vundle.vim/')
 call vundle#rc(fnameescape(vimfiles_path . '/bundle/'))
 
 " load .vimrc.pulgins and .vimrc.plugins.local if exists
-if exists('g:vim_custom_path')
-    let vimrc_plugins_path = g:vim_custom_path.'/.vimrc.plugins'
-    let vimrc_plugins_local_path = g:vim_custom_path.'/.vimrc.plugins.local'
+if WINDOWS()
+    let plugins_filename = '_vimrc.plugins'
+    let plugins_local_filename = '_vimrc.plugins.local'
 else
-    let vimrc_plugins_path = '~/.vimrc.plugins'
-    let vimrc_plugins_local_path = '~/.vimrc.plugins.local'
+    let plugins_filename = '.vimrc.plugins'
+    let plugins_local_filename = '.vimrc.plugins.local'
+endif
+
+if exists('g:vim_custom_path')
+    let vimrc_plugins_path = g:vim_custom_path.'/' . plugins_filename
+    let vimrc_plugins_local_path = g:vim_custom_path.'/' . plugins_local_filename
+else
+    let vimrc_plugins_path = '~/' . plugins_filename
+    let vimrc_plugins_local_path = '~/' . plugins_local_filename
 endif
 if filereadable(expand(vimrc_plugins_path))
     exec 'source ' . fnameescape(vimrc_plugins_path)
