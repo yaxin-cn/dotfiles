@@ -149,6 +149,7 @@ Plugin 'Glench/Vim-Jinja2-Syntax'
 
 " ######## 前端工具 ########
 " ######## javascript  注意: syntax这个插件要放前面 ########
+Plugin 'kchmck/vim-coffee-script'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'pangloss/vim-javascript'
 let g:html_indent_inctags = "html,body,head,tbody"
