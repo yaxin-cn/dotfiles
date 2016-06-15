@@ -21,17 +21,18 @@ test -d $USER_APP_PATH && PATH=$USER_APP_PATH:$PATH
 if which nvm &> /dev/null;then
     if [ -f $HOME/.node-version ];then
         config_node_version=`cat $HOME/.node-version`
-        if [ -n $config_node_version ];then
+        if [ -n "$config_node_version" ];then
             node_version=$config_node_version
         fi
     else
-        installed_latest=`nvm_ls | egrep -v "^system$" | tail -1`
+        installed_latest=`nvm_ls | egrep -v "^(system|N/A)$" | tail -1`
         if [ -n $installed_latest ];then
             node_version=$installed_latest
         fi
     fi
-    if [ -n $node_version ];then
-        PATH=${NVM_DIR}/versions/node/${node_version}/bin:$PATH
+    if [ -n "$node_version" ];then
+        node_bin_path=${NVM_DIR}/versions/node/${node_version}/bin
+        test -d $node_bin_path && PATH=${NVM_DIR}/versions/node/${node_version}/bin:$PATH
     fi
 fi
 # add jre path
