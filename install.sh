@@ -103,10 +103,10 @@ for item in npmrc profile tmux.conf bash/bashrc bash/bash_aliases zsh/zsh_aliase
     if [ -f $real_config_file ];then
         backup "$HOME_DIR/.${_filename}"
         log info "Installing $_filename to system"
-        ln -sv $real_config_file "$HOME_DIR/.${_filename}"
+        ln -sfv $real_config_file "$HOME_DIR/.${_filename}"
     elif  [ -d $real_config_file ];then
         backup "$HOME_DIR/.${_filename}"
         log info "Installing $_filename to system"
-        ln -sv $real_config_file "$HOME_DIR/.${_filename}"
+        ln -sfv $real_config_file "$HOME_DIR/.${_filename}"
     fi
 done
