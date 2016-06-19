@@ -51,7 +51,11 @@ ZSH_CUSTOM=$HOME/.dotfiles/zsh/custom
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(z git pip virtualenvwrapper history nvm sudo)
+plugins=(z git pip history nvm sudo)
+# load virtualenvwrapper
+if which workon &> /dev/null;then
+    plugins=($plugins virtualenvwrapper)
+fi
 # load plugin under X
 if [[ -z $SSH_CONNECTION ]];then
     plugins=($plugins sublime)
