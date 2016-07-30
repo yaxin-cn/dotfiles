@@ -53,7 +53,7 @@ ZSH_CUSTOM=$HOME/.dotfiles/zsh/custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(z git pip history nvm sudo)
 # load virtualenvwrapper
-if which workon &> /dev/null;then
+if which virtualenvwrapper.sh &> /dev/null;then
     plugins=($plugins virtualenvwrapper)
 fi
 # load plugin under X
