@@ -60,6 +60,10 @@ fi
 if [[ -z $SSH_CONNECTION ]];then
     plugins=($plugins sublime)
 fi
+# load docker
+if which docker &> /dev/null;then
+    plugins=($plugins docker)
+fi
 
 # load on my zsh
 source $ZSH/oh-my-zsh.sh
