@@ -7,7 +7,7 @@
 "       -> 插件加载
 "       -> 编程工具增强
 "       -> 文档工具
-"       -> 系统管理员工具
+"       -> 文件类型支持
 "       -> 显示增强-主题等
 "       -> 增强工具
 "       -> 其它工具
@@ -184,11 +184,12 @@ Plugin 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled=1
 
 " =======================================================
-" 系统管理员工具
+" 文件类型支持
 " =======================================================
 " ######## nginx配置语法 ########
 Plugin 'evanmiller/nginx-vim-syntax'
 au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/*,~/nginx_conf/*.conf,~/nginx_conf/*.conf.disabled if &ft == '' | setfiletype nginx | endif
+Plugin 'ekalinin/Dockerfile.vim'
 
 " =======================================================
 " 显示增强-主题等
