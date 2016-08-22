@@ -53,17 +53,11 @@ ZSH_CUSTOM=$HOME/.dotfiles/zsh/custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(z git pip history nvm sudo)
 # load virtualenvwrapper
-if which virtualenvwrapper.sh &> /dev/null;then
-    plugins=($plugins virtualenvwrapper)
-fi
+which virtualenvwrapper.sh &> /dev/null && plugins=($plugins virtualenvwrapper)
 # load plugin under X
-if [[ -z $SSH_CONNECTION ]];then
-    plugins=($plugins sublime)
-fi
+[[ -z $SSH_CONNECTION ]] && plugins=($plugins sublime)
 # load docker
-if which docker &> /dev/null;then
-    plugins=($plugins docker)
-fi
+which docker &> /dev/null && plugins=($plugins docker)
 
 # load on my zsh
 source $ZSH/oh-my-zsh.sh
