@@ -58,6 +58,8 @@ which virtualenvwrapper.sh &> /dev/null && plugins=($plugins virtualenvwrapper)
 [[ -z $SSH_CONNECTION ]] && plugins=($plugins sublime)
 # load docker
 which docker &> /dev/null && plugins=($plugins docker)
+# load docker-compose
+which docker-compose &> /dev/null && plugins=($plugins docker-compose)
 
 # load on my zsh
 source $ZSH/oh-my-zsh.sh
