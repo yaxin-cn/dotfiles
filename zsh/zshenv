@@ -17,6 +17,8 @@ test -d $SYS_NODE_PATH && PATH=$SYS_NODE_PATH:$PATH
 test -d $COMPOSER_PATH && PATH=$COMPOSER_PATH:$PATH
 # add custom bin path
 test -d $USER_APP_PATH && PATH=$USER_APP_PATH:$PATH
+# add jre path
+test -f /etc/jrerc && . /etc/jrerc
 # add nvm and local node path
 if which nvm &> /dev/null;then
     if [ -f $HOME/.node-version ];then
@@ -35,12 +37,6 @@ if which nvm &> /dev/null;then
         test -d $node_bin_path && PATH=${NVM_DIR}/versions/node/${node_version}/bin:$PATH
     fi
 fi
-# add jre path
-test -f /etc/jrerc && . /etc/jrerc
-# add composer local path
-test -d ~/.composer/vendor/bin && PATH=~/.composer/vendor/bin:$PATH
-export PATH
-
 # make the fuck work
 if which thefuck &> /dev/null;then
     eval "$(thefuck --alias)"
@@ -54,7 +50,9 @@ set_proxy() {
         exit 1
     fi
     export HTTP_PROXY=$1
+    export HTTPS_PROXY=$1
     export http_proxy=$1
+    export https_proxy=$1
 }
 unset_proxy() {
     unset HTTP_PROXY
@@ -64,4 +62,4 @@ unset_proxy() {
 }
 
 # Local config
-[[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
+test -f ~/.zshenv.local && source ~/.zshenv.local
