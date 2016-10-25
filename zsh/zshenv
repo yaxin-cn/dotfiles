@@ -20,7 +20,7 @@ test -d $USER_APP_PATH && PATH=$USER_APP_PATH:$PATH
 # add jre path
 test -f /etc/jrerc && . /etc/jrerc
 # add nvm and local node path
-if which nvm &> /dev/null;then
+if false && which nvm &> /dev/null;then
     if [ -f $HOME/.node-version ];then
         config_node_version=`cat $HOME/.node-version`
         if [ -n "$config_node_version" ];then
