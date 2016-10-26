@@ -60,6 +60,9 @@ unset_proxy() {
     unset http_proxy
     unset https_proxy
 }
+get_proxy() {
+    echo $http_proxy
+}
 
 # Local config
 test -f ~/.zshenv.local && source ~/.zshenv.local
