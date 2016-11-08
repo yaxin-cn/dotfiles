@@ -10,7 +10,8 @@ if [[ "$PROFILE_STARTUP" == true ]];then
     # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html
     test -d $HOME/.zsh_profile || mkdir $HOME/.zsh_profile
     current_datetime=`date "+%Y%m%d%H%M%S"`
-    PS4=$'%D{%M%S%.} %N:%i> '
+    # PS4=$'%D{%M%S%.} %N:%i> '
+    PS4=$'$(date "+%H:%M:%S.%N") %N:%i> '
     exec 3>&2 2>$HOME/.zsh_profile/startlog-${current_datetime}.$$
     setopt xtrace prompt_subst
 fi
