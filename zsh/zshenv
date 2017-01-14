@@ -9,6 +9,10 @@ export EDITOR=$VISUAL
 # nvm mirror
 export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
 export NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
+# PYTHON PATH: Only for macOS
+if [ "$system" = "Darwin" ]; then
+    export PYTHONPATH=/Library/Python/2.7/site-packages:$PYTHONPATH
+fi
 # reset PATH
 PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/X11:/usr/games
 # add global nodejs
