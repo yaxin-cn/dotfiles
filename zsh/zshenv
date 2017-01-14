@@ -64,5 +64,10 @@ get_proxy() {
     echo $http_proxy
 }
 
+# register virtualenvwrapper
+virtualenv_active() {
+    source `which virtualenvwrapper.sh`
+}
+
 # Local config
 test -f ~/.zshenv.local && source ~/.zshenv.local
