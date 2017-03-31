@@ -69,7 +69,13 @@ get_proxy() {
 }
 
 # register virtualenvwrapper
-virtualenv_active() {
+register_venv() {
+    source `which virtualenvwrapper.sh`
+}
+# register virtualenvwrapper with python3
+register_venv3() {
+    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+    export WORKON_HOME=$HOME/.virtualenvs3
     source `which virtualenvwrapper.sh`
 }
 
