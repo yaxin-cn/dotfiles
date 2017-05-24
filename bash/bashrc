@@ -60,6 +60,12 @@ unset_proxy() {
     unset http_proxy
     unset https_proxy
 }
+get_proxy() {
+    echo "\$http_proxy: $http_proxy"
+    echo "\$https_proxy: $https_proxy"
+    echo "\$HTTP_PROXY: $HTTP_PROXY"
+    echo "\$HTTPS_PROXY: $HTTPS_PROXY"
+}
 
 # tmux
 _tmux=`/usr/bin/which tmux 2> /dev/null`
@@ -74,9 +80,10 @@ if [[ $? -eq 0 ]];then
 fi
 unset _tmux _session_prefix
 
+BASHRC_D='~/.bashrc.d'
 # additional rc file
-[[ -f ~/.bashrc.local ]] && source ~/.bashrc.local
+[[ -f $BASHRC_D/.bashrc.local ]] && source $BASHRC_D/.bashrc.local
 # personal aliases
-[[ -f ~/.bash_aliases ]] && source ~/.bash_aliases
+[[ -f $BASHRC_D/.bash_aliases ]] && source $BASHRC_D/.bash_aliases
 # environment setting
-[[ -f ~/.bashenv ]] && source ~/.bashenv
+[[ -f $BASHRC_D/.bashenv ]] && source $BASHRC_D/.bashenv

@@ -1,0 +1,96 @@
+#!/bin/bash
+
+if [ -z "$BASH" ];then
+    echo "[$(date "+%Y-%m-%d %H:%M:%S")] [ERROR] Please use bash rather than sh to execute this script."
+    exit 1
+fi
+
+CURRENT_USER=$USERNAME
+LOG_FILE=${LOG_FILE:-"/tmp/$CURRENT_USER-dotfiles-install.log"}
+# |Level|Example|
+# ------|-------
+# |Fatal|Highest level: important stuff down|
+# |Error|For example application crashes / exceptions.|
+# |Warn|Incorrect behavior but the application can continue |
+# |Info|Normal behavior like mail sent, user updated profile etc.|
+# |Debug|Executed queries, user authenticated, session expired|
+# |Trace|Begin method X, end method X etc|
+log() {
+    local CURRENT_DATETIME
+    local log_msg=$*
+    local raw_log_level=$1
+    local log_level_lower
+    local log_level='DEBUG'
+    CURRENT_DATETIME=$(date "+%Y-%m-%d %H:%M:%S")
+    log_level_lower=$(echo "$raw_log_level" | tr '[:upper:]' '[:lower:]')
+    case $log_level_lower in
+        fatal)
+            log_level='FATAL'
+            ;;
+        error)
+            log_level='ERROR'
+            ;;
+        warn)
+            log_level='WARN'
+            ;;
+        info)
+            log_level='INFO'
+            ;;
+        debug)
+            log_level='DEBUG'
+            ;;
+        trace)
+            log_level='TRACE'
+            ;;
+        *)
+            local offset=0
+            log_level='DEBUG'
+            ;;
+    esac
+
+    local offset=${offset-$((${#log_level}+1))}
+    echo "[$CURRENT_DATETIME] [$log_level] ${log_msg:$offset}" | tee -a "$LOG_FILE"
+    unset CURRENT_DATETIME log_msg raw_log_level log_level_lower log_level offset
+}
+
+# get absolut path
+# usage abspath './'
+abspath() {
+    [ -z "$1" ] && p='./' || p=$1
+    cd "$(dirname "$p")" && pwd
+}
+
+# get ln parameters
+get_ln_params() {
+    FORCE_LINK=${FORCE_LINK:-0}
+    VERBOSE=${VERBOSE:-0}
+
+    [ "$FORCE_LINK" -eq 0 ] && params='-Fs' || params='-Fsf'
+    [ "$VERBOSE" -eq 1 ] && params="${params}v"
+    echo "$params"
+}
+
+# backup config file
+BACKUP_PATH=${BACKUP_PATH:-/tmp}
+backup() {
+    local config_file=$1
+    local filename
+    filename=$(basename "$config_file")
+    if [ -e "$config_file" ];then
+        log INFO "Backuping config file $config_file"
+        local backup_msg
+        backup_msg=$(mv -v "$config_file" "$BACKUP_PATH/$filename")
+        log INFO "$backup_msg"
+    fi
+}
+
+# create and backup
+linkit() {
+    src=$1
+    target=$2
+    backup "$target"
+    log DEBUG "execute ln $LN_PARAMS $src $target"
+    ln "$LN_PARAMS" "$src" "$target"
+}
+
+export -f log abspath get_ln_params backup linkit
