@@ -1,5 +1,93 @@
-#!/bin/bash
+# .bashenv
 
+# Define application binary path
+NODE_BIN_DIR=/usr/local/node/bin
+USER_APP_BIN_DIR=$HOME/app/bin
+COMPOSER_BIN_DIR=$HOME/.composer/vendor/bin
+PYTHON3_BIN_DIR=/usr/local/python3/bin
+PHP5_BIN_DIR=/usr/local/php5/bin
+PHP7_BIN_DIR=/usr/local/php7/bin
+
+# Application binary dirs
+BIN_DIRS=($NODE_BIN_DIR $USER_APP_BIN_DIR $COMPOSER_BIN_DIR $PYTHON3_BIN_DIR $PHP5_BIN_DIR $PHP7_BIN_DIR)
+
+# Use vim as the visual editor
+export VISUAL=vim
+export EDITOR=$VISUAL
+
+# Reset PATH
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+
+# Add specify application bin to PATH
+for dir in "${BIN_DIRS[@]}";do
+    [ -d $dir ] && PATH=$dir:$PATH
+done
+export PATH
+
+# Add jre path
+[ -f /etc/jrerc ] && . /etc/jrerc
+
+# thefuck command
 if which thefuck &> /dev/null;then
     eval "$(thefuck --alias)"
 fi
+
+# Nodejs setting
+export NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
+
+# For colorscheme Solarized Dark under xshell
+LS_COLORS='no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=01;05;37;41:ex=00;32:*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32:*.sh=00;32:*.csh=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.bz=00;31:*.tz=00;31:*.rpm=00;31:*.cpio=00;31:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.xbm=00;35:*.xpm=00;35:*.png=00;35:*.tif=00;35:'
+
+# Locale
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US:en
+export LC_ALL=en_US.UTF-8
+
+# Quick set proxy
+set_proxy() {
+    if [ ! $1 ]; then
+        echo "No give proxy address"
+        exit 1
+    fi
+    export HTTP_PROXY=$1
+    export HTTPS_PROXY=$1
+    export http_proxy=$1
+    export https_proxy=$1
+}
+unset_proxy() {
+    unset HTTP_PROXY
+    unset HTTPS_PROXY
+    unset http_proxy
+    unset https_proxy
+}
+get_proxy() {
+    echo "\$http_proxy: $http_proxy"
+    echo "\$https_proxy: $https_proxy"
+    echo "\$HTTP_PROXY: $HTTP_PROXY"
+    echo "\$HTTPS_PROXY: $HTTPS_PROXY"
+}
+
+# Load NVM
+load_nvm() {
+    export NVM_DIR="$HOME/.nvm"
+    export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
+    [ -f "$NVM_DIR/nvm.sh" ] && source $NVM_DIR/nvm.sh
+}
+
+# register virtualenvwrapper
+load_venv() {
+    if which virtualenvwrapper.sh &> /dev/null; then
+        source `which virtualenvwrapper.sh`
+    fi
+}
+# register virtualenvwrapper with python3
+load_venv3() {
+    if which virtualenvwrapper.sh &> /dev/null; then
+        export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+        export WORKON_HOME=$HOME/.virtualenvs3
+        source `which virtualenvwrapper.sh`
+    fi
+}
+
+# Local config
+test -f $HOME/.bashenv.local && source $HOME/.bashenv.local

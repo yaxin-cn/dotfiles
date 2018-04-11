@@ -1,21 +1,21 @@
-# Aliases
-#
+# .bash_aliases
+
 # Interactive operation...
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-#
+
 # Default to human readable figures
 alias df='df -h'
 alias du='du -h'
-#
+
 # Misc :)
 alias less='less -r'                          # raw control characters
 alias whence='type -a'                        # where, of a sort
 alias grep='grep --color'                     # show differences in colour
 alias egrep='egrep --color=auto'              # show differences in colour
 alias fgrep='fgrep --color=auto'              # show differences in colour
-#
+
 # Some shortcuts for different directory listings
 alias ls='ls -h --color=auto'                 # classify files in colour
 alias l.='ls -d .* --color=auto'
@@ -28,7 +28,40 @@ alias l='ls -CF'                              #
 # User specific aliases and functions
 alias vi='vim'
 alias py='python'
-alias clean='echo -ne "\\033c"'
+# Clean command
+system=`uname -s`
+if [ "$system"x = "Darwin"x ];then
+    # This is for OSX and the shortcuts for this is Cmd + K
+    alias clean='echo -ne "\e]50;ClearScrollback\a"'
+elif [ "$system"x = "Linux"x ];then
+    alias clean='echo -ne "\\033c"'
+fi
+
+# comment sudo alias, because this could make <tab> completion disabled.
+# so, how to make sudo PATH work fine:
+#     use `visudo` edit /etc/sudoers file add line
+#     Defaults    env_keep+="PATH"
+#     under **Defaults    env_reset** line
+#
+#     or
+#
+#     change **Defaults   secure_path=...** to
+#     **Defaults   !secure_path**
+#
+# PS:
+#     SETENV: can make -E option work
+#     `%sudo   ALL=(ALL:ALL) NOPASSWD: SETENV: ALL`
+#
+# reference:
+# http://stackoverflow.com/questions/257616/sudo-changes-path-why#answer-257644
+#alias sudo='sudo env PATH=$PATH'
+#alias pip='pip --trusted-host mirrors.aliyun.com'
+alias phpcli='psysh'
+alias php-cli='psysh'
+
+# Node
+alias npm='npm --registry=https://registry.npm.taobao.org'
 
 # Local config
-[[ -f ~/.bash_aliases.local ]] && source ~/.bash_aliases.local
+[ -f $HOME/.bash_aliases.local ] && source $HOME/.bash_aliases.local
+

@@ -4,6 +4,7 @@
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
+
 # Prompt
 PS1='[\u@\h \[\e[33m\]\W\[\e[0m\]]\$'
 
@@ -43,7 +44,7 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ];then
     . /usr/local/bin/virtualenvwrapper.sh
 fi
 
-# functions
+# Quick set proxy
 set_proxy() {
     if [ ! $1 ]; then
         echo "No give proxy address"
@@ -80,10 +81,9 @@ if [[ $? -eq 0 ]];then
 fi
 unset _tmux _session_prefix
 
-BASHRC_D='~/.bashrc.d'
-# additional rc file
-[[ -f $BASHRC_D/.bashrc.local ]] && source $BASHRC_D/.bashrc.local
-# personal aliases
-[[ -f $BASHRC_D/.bash_aliases ]] && source $BASHRC_D/.bash_aliases
-# environment setting
-[[ -f $BASHRC_D/.bashenv ]] && source $BASHRC_D/.bashenv
+# Additional rc file
+[ -f $HOME/.bashrc.local ] && source $HOME/.bashrc.local
+# Personal aliases
+[ -f $HOME/.bash_aliases ] && source $HOME/.bash_aliases
+# Environment setting
+[ -f $HOME/.bashenv ] && source $HOME/.bashenv

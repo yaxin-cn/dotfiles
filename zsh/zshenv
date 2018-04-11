@@ -1,50 +1,42 @@
 #################
-# zsh enviroment 
+# zsh enviroment
 #################
-# define path
-NODE_BIN_PATH=/usr/local/node/bin
-USER_APP_BIN_PATH=$HOME/app/bin
-COMPOSER_BIN_PATH=$HOME/.composer/vendor/bin
-PYTHON3_BIN_PATH=/usr/local/python3/bin
-PHP7_BIN_PATH=/usr/local/php7/bin
+# Define application binary path
+NODE_BIN_DIR=/usr/local/node/bin
+USER_APP_BIN_DIR=$HOME/app/bin
+COMPOSER_BIN_DIR=$HOME/.composer/vendor/bin
+PYTHON3_BIN_DIR=/usr/local/python3/bin
+PHP5_BIN_DIR=/usr/local/php5/bin
+PHP7_BIN_DIR=/usr/local/php7/bin
+
+# Application binary dirs
+BIN_DIRS=($NODE_BIN_DIR $USER_APP_BIN_DIR $COMPOSER_BIN_DIR $PYTHON3_BIN_DIR $PHP5_BIN_DIR $PHP7_BIN_DIR)
 
 # Use vim as the visual editor
 export VISUAL=vim
 export EDITOR=$VISUAL
 
-# reset PATH
-PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/X11:/usr/games
-# add global 
-[ -d $NODE_BIN_PATH ] && PATH=$NODE_BIN_PATH:$PATH
-[ -d $COMPOSER_BIN_PATH ] && PATH=$COMPOSER_BIN_PATH:$PATH
-[ -d $USER_APP_BIN_PATH ] && PATH=$USER_APP_BIN_PATH:$PATH
-[ -d $PYTHON3_BIN_PATH ] && PATH=$PYTHON3_BIN_PATH:$PATH
-[ -d $PHP7_BIN_PATH ] && PATH=$PHP7_BIN_PATH:$PATH
-# add jre path
-[ -f /etc/jrerc ] && . /etc/jrerc
-# nvm mirror
-export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
-export NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
-# add nvm and local node path
-if false && which nvm &> /dev/null;then
-    if [ -f $HOME/.node-version ];then
-        config_node_version=`cat $HOME/.node-version`
-        if [ -n "$config_node_version" ];then
-            node_version=$config_node_version
-        fi
-    else
-        installed_latest=`nvm_ls | egrep -v "^(system|N/A)$" | tail -1`
-        if [ -n $installed_latest ];then
-            node_version=$installed_latest
-        fi
-    fi
-    if [ -n "$node_version" ];then
-        node_bin_path=${NVM_DIR}/versions/node/${node_version}/bin
-        test -d $node_bin_path && PATH=${NVM_DIR}/versions/node/${node_version}/bin:$PATH
-    fi
-fi
+# Reset PATH
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
 
-# fast set proxy
+# Add specify application bin to PATH
+for dir in $BIN_DIRS;do
+    [ -d $dir ] && PATH=$dir:$PATH
+done
+export PATH
+
+# Add jre path
+[ -f /etc/jrerc ] && . /etc/jrerc
+
+# Nodejs setting
+export NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
+
+# Locale
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US:en
+export LC_ALL=en_US.UTF-8
+
+# Quick set proxy
 set_proxy() {
     if [ ! $1 ]; then
         echo "No give proxy address"
@@ -68,12 +60,19 @@ get_proxy() {
     echo "\$HTTPS_PROXY: $HTTPS_PROXY"
 }
 
-# register virtualenvwrapper
-register_venv() {
+# Load NVM
+load_nvm() {
+    export NVM_DIR="$HOME/.nvm"
+    export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+}
+
+# Load virtualenvwrapper
+load_venv() {
     source `which virtualenvwrapper.sh`
 }
-# register virtualenvwrapper with python3
-register_venv3() {
+# Load virtualenvwrapper with python3
+load_venv3() {
     export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
     export WORKON_HOME=$HOME/.virtualenvs3
     source `which virtualenvwrapper.sh`
