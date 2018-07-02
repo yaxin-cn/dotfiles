@@ -63,7 +63,7 @@ ZSH_CUSTOM=$HOME/.dotfiles/zsh/custom
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(z git pip history sudo zsh-syntax-highlighting)
+plugins=(git pip history sudo zsh-syntax-highlighting)
 # load virtualenvwrapper: Note: virtualenvwrapper is really cost lots of resources
 #which virtualenvwrapper.sh &> /dev/null && plugins=($plugins virtualenvwrapper)
 # load plugin under X
